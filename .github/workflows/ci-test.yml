@@ -8,10 +8,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-      - name: Run tests
-        run: |
-          pytest -v -k 'test_addic7ed' ./tests/test_suite.py
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest -v -k test_addic7ed ./tests/test_suite.py --tb=short
